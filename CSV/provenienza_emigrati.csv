@@ -1,0 +1,49 @@
+continent;region;inflows;lat;long
+Europe;Albania;23479;41;20
+Europe;Bosnia and Herzegovina;986;44;18
+Europe;Kosovo;2948;43;21
+Europe;Macedonia;2235;42;22
+Europe;Moldova;2490;47;29
+Europe;Russia;3192;65;98
+Europe;Serbia;1519;44;21
+Europe;Turkey;2370;39;35
+Europe;Ukraine;7951;49;31
+Africa;Algeria;810;28;3
+Africa;Egypt;8807;26;29
+Africa;Morocco;20396;31;-7
+Africa;Tunisia;4169;34;9
+Africa;Burkina Faso;744;12;-1
+Africa;Ivory Coast;3662;8;-6
+Africa;Gambia;4142;13;-15
+Africa;Ghana;4228;8;-1
+Africa;Guinea;2846;11;11
+Africa;Mali;3788;16;-2
+Africa;Nigeria;15532;10;8
+Africa;Senegal;7447;14;-14
+Africa;Eritrea;937;16;38
+Africa;Ethiopia;518;10;39
+Africa;Mauritius;135;-20;58
+Africa;Somalia;1056;8;50
+Africa;Cameroon;1598;5;13
+Africa;Congo;196;-3;24
+Asia;Georgia;1476;41;45
+Asia;Iran;1801;33;55
+Asia;Iraq;1231;33;44
+Asia;Lebanon;465;34;36
+Asia;Syria;1058;35;39
+Asia;China;11367;35;105
+Asia;Philippines;3720;13;123
+Asia;Afghanistan;790;34;66
+Asia;Bangladesh;13189;25;90
+Asia;India;13621;22;79
+Asia;Pakistan;13355;30;71
+Asia;Sri Lanka;4138;8;81
+America;United States;9135;40;-100
+America;Argentina;911;-35;-65
+America;Brazil;5461;-10;-53
+America;Colombia;1834;4;-73
+America;Cuba;2043;23;-81
+America;Dominican Republic;2339;19;-70
+America;Ecuador;1667;-1;-79
+America;Peru;3802;-7;-75
+Oceania;Oceania;475;-23;133
