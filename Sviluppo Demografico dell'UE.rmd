@@ -1,0 +1,287 @@
+---
+title: "SVILUPPO DEMOGRAFICO DELL'UE"
+author: "Andrea Gritti"
+date: '09/09/2022'
+output:
+  ioslides_presentation:
+    incremental: yes
+    logo: logo.png
+    css: style.css
+---
+
+```{r setup, include = FALSE, echo = FALSE, message = FALSE}
+# Dati necessari:
+load(file = "data.RData")
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, fig.align = 'center')
+
+# Librerie necessarie:
+library(dplyr)
+library(fontawesome)
+library(geosphere)
+library(ggplot2)
+library(ggraph)
+library(igraph)
+library(maps)
+
+# Notazione:
+options(scipen = 10000)
+
+# Mappa:
+provenienza_emigrati <- read.csv("CSV//provenienza_emigrati.csv", sep = ";", header = TRUE, check.names = FALSE)
+
+europe <- provenienza_emigrati %>%
+  filter(provenienza_emigrati$continent == "Europe")
+africa <- provenienza_emigrati %>%
+  filter(provenienza_emigrati$continent == "Africa")
+asia <- provenienza_emigrati %>%
+  filter(provenienza_emigrati$continent == "Asia")
+america <- provenienza_emigrati %>%
+  filter(provenienza_emigrati$continent == "America")
+oceania <- provenienza_emigrati %>%
+  filter(provenienza_emigrati$continent == "Oceania")
+
+draw_map <- function(x) {
+  return(
+    for(i in 1:nrow(x)){
+      inter <- gcIntermediate(c(x$long[i], x$lat[i]),  c(11, 44.80), n = 50, addStartEnd = TRUE, breakAtDateLine = F)
+      
+      # Connessioni:
+      lines(inter, col = "#305897", lwd = x$inflows_normalized[i] * 5)
+      points(x = x$long[i], y = x$lat[i], col = "#305897", cex = 1, pch = 20)
+    }
+  )
+}
+```
+
+
+<!-- NUOVA SEZIONE -->
+
+
+***
+<div class = "titolo-sezione">
+  <span>DEMOGRAFIA</span>
+</div>
+
+***
+<div class = "centered">
+  `r fa(name = "user", fill = "#305897")` <em>515.390.954</em>
+  <hr>
+  <em>745.173.769</em> `r fa(name = "users", fill = "#305897")`
+</div>
+
+## · POPOLAZIONE ·
+```{r, out.width = '65%'}
+knitr::include_graphics("Grafici//plot_1.png")
+```
+
+***
+<div class = "centered">
+  `r fa(name = "map", fill = "#305897")` <em>4.797.702</em>
+  <hr>
+  <em>109.56</em> `r fa(name = "street-view", fill = "#305897")`
+</div>
+
+## · DENSITÀ ·
+```{r, out.width = '65%'}
+knitr::include_graphics("Grafici//plot_2.png")
+```
+
+## · CRESCITA ·
+```{r, out.width = '80%'}
+knitr::include_graphics("Grafici//plot_3.png")
+```
+
+## · TASSO DI CRESCITA ·
+```{r, out.width = '90%'}
+knitr::include_graphics("Grafici//plot_4.png")
+```
+
+## · ULTIMI 10 ANNI ·
+```{r, out.width = '90%'}
+knitr::include_graphics("Grafici//plot_6.png")
+```
+
+## · STATI PIÙ GIOVANI ·
+```{r, out.width = '65%'}
+knitr::include_graphics("Grafici//plot_7.png")
+```
+
+## · STRUTTURA ITALIA ·
+```{r, out.width = '50%'}
+knitr::include_graphics("Grafici//plot_9.png")
+```
+
+## · NEL 2100 ·
+```{r, out.width = '80%'}
+knitr::include_graphics("Grafici//plot_11.png")
+```
+
+## · IN PERCENTUALI ·
+```{r, out.width = '90%'}
+knitr::include_graphics("Grafici//plot_12.png")
+```
+
+
+<!-- NUOVA SEZIONE -->
+
+
+***
+<div class = "titolo-sezione">
+  <span>NASCITE E DECESSI</span>
+</div>
+
+***
+<div class = "centered">
+`r fa(name = "baby", fill = "#305897")` <em>4.797.702</em>
+<hr>
+<em>5.873.669</em> `r fa(name = "cross", fill = "#305897")`
+</div>
+
+## · NASCITE ·
+```{r, out.width = '70%'}
+knitr::include_graphics("Grafici//plot_13.png")
+```
+
+## · IN ITALIA? ·
+```{r, out.width = '80%'}
+knitr::include_graphics("Grafici//plot_15.png")
+```
+
+## · DECESSI ·
+
+```{r, out.width = '70%'}
+knitr::include_graphics("Grafici//plot_14.png")
+```
+
+## · IN ITALIA? ·
+```{r, out.width = '80%'}
+knitr::include_graphics("Grafici//plot_16.png")
+```
+
+## · DIFFERENZA ·
+```{r, out.width = '85%'}
+knitr::include_graphics("Grafici//plot_17.png")
+```
+
+## · FERTILITÀ ·
+```{r, out.width = '65%'}
+knitr::include_graphics("Grafici//plot_18.png")
+```
+
+<!-- NUOVA SEZIONE -->
+
+
+***
+<div class = "titolo-sezione">
+  <span>MIGRAZIONE</span>
+</div>
+
+## · IMMIGRAZIONE ·
+```{r, out.width = '65%'}
+knitr::include_graphics("Grafici//plot_20.png")
+```
+
+
+## · EUROPA ·
+```{r, out.width = '100%'}
+param <- par(mar = c(0, 0, 0, 0))
+
+mappa <- map("world",
+    col = "#cccccc", fill = TRUE, bg = "transparent", lwd = 0.05,
+    mar = rep(0, 4), border = 1, ylim = c(-80,80) 
+)
+
+draw_map(europe)
+
+```
+
+## · AFRICA ·
+```{r, out.width = '100%'}
+param <- par(mar = c(0, 0, 0, 0))
+
+mappa <- map("world",
+    col = "#cccccc", fill = TRUE, bg = "transparent", lwd = 0.05,
+    mar = rep(0, 4), border = 1, ylim = c(-80,80) 
+)
+draw_map(africa)
+
+```
+
+## · ASIA ·
+```{r, out.width = '100%'}
+param <- par(mar = c(0, 0, 0, 0))
+
+mappa <- map("world",
+    col = "#cccccc", fill = TRUE, bg = "transparent", lwd = 0.05,
+    mar = rep(0, 4), border = 1, ylim = c(-80,80) 
+)
+draw_map(asia)
+
+```
+
+## · AMERICA ·
+```{r, out.width = '100%'}
+param <- par(mar = c(0, 0, 0, 0))
+
+mappa <- map("world",
+    col = "#cccccc", fill = TRUE, bg = "transparent", lwd = 0.05,
+    mar = rep(0, 4), border = 1, ylim = c(-80,80) 
+)
+# -.-.-.-.- GRAFO PROVENIENZA -.-.-.-.- #
+draw_map(america)
+
+```
+
+## · OCEANIA ·
+```{r, out.width = '100%'}
+param <- par(mar = c(0, 0, 0, 0))
+
+mappa <- map("world",
+    col = "#cccccc", fill = TRUE, bg = "transparent", lwd = 0.05,
+    mar = rep(0, 4), border = 1, ylim = c(-80,80) 
+)
+# -.-.-.-.- GRAFO PROVENIENZA -.-.-.-.- #
+draw_map(oceania)
+
+```
+
+## · RAPPORTO I/E ·
+```{r, out.width = '85%'}
+knitr::include_graphics("Grafici//plot_22.png")
+```
+
+
+<!-- NUOVA SEZIONE -->
+
+
+***
+<div class = "titolo-sezione">
+  <span>ANALISI TESTUALE</span>
+</div>
+
+***
+```{r, out.width = '100%'}
+webshot::webshot("plot_23.html", "Grafici//plot_23.png", vwidth = 700, vheight = 500, delay = 10)
+```
+
+***
+
+```{r, out.width = '75%'}
+knitr::include_graphics("Grafici//plot_24.png")
+```
+
+## · SENTIMENT ·
+```{r, out.width = '80%'}
+knitr::include_graphics("Grafici//plot_25.png")
+```
+
+## · SENTIMENT ·
+```{r, out.width = '88%'}
+knitr::include_graphics("Grafici//plot_26.png")
+```
+
+## · FONTI ·
+Ufficio Statistico dell'Unione Europea (Eurostat) <br /> <br />
+Office for National Statistics (UK) <br /> <br />
+Il Fatto Quotidiano <br /> <br />
+Istituto Nazionale di Statistica (ISTAT)

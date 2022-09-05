@@ -1,0 +1,163 @@
+/* --- COLORE PRINCIPALE --- */
+
+:root {
+  --main-color: #305897;
+}
+
+body {
+  font-family: "Helvetica";
+}
+
+slides > slide {
+  background-color: black;
+  background-image: url('background.png');
+  background-size: 100% 100%;
+  color: #333333;
+  padding: 20px;
+}
+
+slides > slide > hgroup + article {
+  margin-top: 0px;
+}
+
+
+/* --- MARGINI PLOT --- */
+
+article#crescita {
+  margin-top: 25px;
+}
+
+article#caso-bulgaro {
+  margin-top: 25px;
+}
+
+article#nel-2100 {
+  margin-top: 25px;
+}
+
+article#struttura-italia {
+  margin-top: 10px;
+}
+
+article#nascite {
+  margin-top: 30px;
+}
+
+article#decessi {
+  margin-top: 30px;
+}
+
+article#in-italia {
+  margin-top: 25px;
+}
+
+article#in-italia-1 {
+  margin-top: 25px;
+}
+
+article#età-primogenito {
+  margin-top: 110px;
+}
+
+article#sentiment {
+  margin-top: 25px;
+}
+
+/* --- TITOLI --- */
+
+h2 {
+  font-weight: bold;
+  text-shadow: -1px 0 #333333, 0 1px #333333, 1px 0 #333333, 0 -1px #333333;
+  color: var(--main-color);
+  font-size: 65px;
+  text-align: center;
+  margin-top: 10px;
+  letter-spacing: 2px;
+}
+
+h3 {
+  color: var(--main-color);
+  text-align: center;
+  text-shadow: -1px 0 #333, 0 1px #333, 1px 0 #333, 0 -1px #333;
+  font-weight: bold;
+  font-size: 36px;
+}
+
+/* --- PARAGRAFI --- */
+
+p {
+  text-align: center;
+  font-size: 22px;
+}
+
+/* --- SLIDE 1 --- */
+
+slides > slide.title-slide hgroup h1 {
+  text-align: center;
+  text-shadow: -1px 0 #333, 0 1px #333, 1px 0 #333, 0 -1px #333;
+  color: var(--main-color);
+  width: 700px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+slides > slide.title-slide p {
+  text-align: left;
+}
+
+/* --- SLIDE ICONE --- */
+
+.centered {
+  text-align: center;
+  width: 800px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 85px;
+}
+
+.centered > p {
+  line-height: 1.4em;
+  font-size: 85px;
+}
+
+.centered > hr {
+  height: 2px;
+  border-width: 0;
+  color:"#FFFFFF";
+  width: 300px;
+  background-color: var(--main-color);
+}
+
+/* --- SLIDE MULTIPLE  --- */
+
+slides > slide > hgroup + article p {
+  margin-bottom: 0;
+}
+
+.titolo-sezione p {
+  font-weight: bold;
+  text-shadow: -1px 0 #333333, 0 1px #333333, 1px 0 #333333, 0 -1px #333333;
+  color: var(--main-color);
+  width: 700px;
+  font-size: 100px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+slides > slide:not(.nobackground):after {
+  content: '';
+}
+
+#fonti p {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  font-size: 36px;
+  transform: translate(-50%, -50%);
+}
